@@ -42,10 +42,10 @@ jobs:
       uses: appleboy/ssh-action@v0.1.7
       continue-on-error: true
       with:
-        host: ${{ secret.SSH_HOST }}
-        port: ${{ secret.SSH_PORT }}
-        username: ${{ secret.SSH_USER }}
-        key: ${{ secret.SSH_KEY }}
+        host: ${{ secrets.SSH_HOST }}
+        port: ${{ secrets.SSH_PORT }}
+        username: ${{ secrets.SSH_USER }}
+        key: ${{ secrets.SSH_KEY }}
         script: |
           sudo docker stop my-java-container
           sudo docker rm my-java-container
