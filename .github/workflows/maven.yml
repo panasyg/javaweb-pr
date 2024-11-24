@@ -49,6 +49,7 @@ jobs:
         script: |
           sudo docker stop my-java-container
           sudo docker rm my-java-container
+          sudo docker rmi panasyg/java-pr
           sudo docker pull panasyg/java-pr:latest
           sudo docker run --name my-java-container -d -p 8080:8080 panasyg/java-pr:latest
 
