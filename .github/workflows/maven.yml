@@ -38,4 +38,18 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Deploy to AWS
+      uses: appleboy/ssh-action@v0.1.7
+      continue-on-error: true
+      with:
+        host: ${{ secret.SSH_HOST }}
+        port: ${{ secret.SSH_PORT }}
+        username: ${{ secret.SSH_USER }}
+        key: ${{ secret.SSH_KEY }}
+        script: |
+          sudo docker stop my-java-container
+          sudo docker rm my-java-container
+          sudo docker pull panasyg/java-pr:latest
+          sudo docker run --name my-java-container -d -p 8080:8080 panasyg/java-pr:latest
+
     
